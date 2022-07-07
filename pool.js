@@ -4,29 +4,24 @@ var bits = require('bit-twiddle')
 var dup = require('dup')
 var Buffer = require('buffer').Buffer
 
-//Legacy pool support
-if(!global.__TYPEDARRAY_POOL) {
-  global.__TYPEDARRAY_POOL = {
-      UINT8     : dup([32, 0])
-    , UINT16    : dup([32, 0])
-    , UINT32    : dup([32, 0])
-    , BIGUINT64 : dup([32, 0])
-    , INT8      : dup([32, 0])
-    , INT16     : dup([32, 0])
-    , INT32     : dup([32, 0])
-    , BIGINT64  : dup([32, 0])
-    , FLOAT     : dup([32, 0])
-    , DOUBLE    : dup([32, 0])
-    , DATA      : dup([32, 0])
-    , UINT8C    : dup([32, 0])
-    , BUFFER    : dup([32, 0])
-  }
-}
-
 var hasUint8C = (typeof Uint8ClampedArray) !== 'undefined'
 var hasBigUint64 = (typeof BigUint64Array) !== 'undefined'
 var hasBigInt64 = (typeof BigInt64Array) !== 'undefined'
-var POOL = global.__TYPEDARRAY_POOL
+var POOL = {
+    UINT8     : dup([32, 0])
+  , UINT16    : dup([32, 0])
+  , UINT32    : dup([32, 0])
+  , BIGUINT64 : dup([32, 0])
+  , INT8      : dup([32, 0])
+  , INT16     : dup([32, 0])
+  , INT32     : dup([32, 0])
+  , BIGINT64  : dup([32, 0])
+  , FLOAT     : dup([32, 0])
+  , DOUBLE    : dup([32, 0])
+  , DATA      : dup([32, 0])
+  , UINT8C    : dup([32, 0])
+  , BUFFER    : dup([32, 0])
+}
 
 //Upgrade pool
 if(!POOL.UINT8C) {
